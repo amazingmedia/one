@@ -88,7 +88,7 @@ const Post: React.FC<PostProps> = (props) => {
 	return (
 		<>
 			<Head>
-				<meta property="og:title" content={post.soe.opengraphTitle} />
+				<meta property="og:title" content={PostTypeSEO.opengraphTitle} />
 				<link rel="canonical" href={`https://${host}/${path}`} />
 				<meta property="og:description" content={removeTags(post.excerpt)} />
 				<meta property="og:url" content={`https://${host}/${path}`} />
