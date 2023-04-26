@@ -33,11 +33,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 				dateGmt
 				modifiedGmt
 				content
-				seo {
-          metaDesc
-          fullHead
-          title
-        }
 				author {
 					node {
 						name
@@ -75,8 +70,7 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = (props) => {
-	//const { post, host, path } = props;
-	const { seo } = props;
+	const { post, host, path } = props;
 
 	// to remove tags from excerpt
 	const removeTags = (str: string) => {
@@ -88,7 +82,7 @@ const Post: React.FC<PostProps> = (props) => {
 	return (
 		<>
 			<Head>
-				<meta property="og:title" content={posttypeseo.opengraphtitle} />
+				<meta property="og:title" content={post.title} />
 				<link rel="canonical" href={`https://${host}/${path}`} />
 				<meta property="og:description" content={removeTags(post.excerpt)} />
 				<meta property="og:url" content={`https://${host}/${path}`} />
@@ -102,10 +96,10 @@ const Post: React.FC<PostProps> = (props) => {
 					property="og:image:alt"
 					content={post.featuredImage.node.altText || post.title}
 				/>
-				<title>{posttypeseo.opengraphtitle}</title>
+				<title>{post.title}</title>
 			</Head>
 			<div className="post-container">
-				<h1>{posttypeseo.opengraphtitle}</h1>
+				<h1>{post.title}</h1>
 				<img
 					src={post.featuredImage.node.sourceUrl}
 					alt={post.featuredImage.node.altText || post.title}
