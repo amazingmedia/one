@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 				}
 			}
 		}
-		 }
+		 
 	`;
 
 	const data = await graphQLClient.request(query);
