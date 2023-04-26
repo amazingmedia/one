@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	
 		{
 		query PostBySlug($id: ID!) {
-			post(id: "/${path}/", idType: URI) {
+			post(id: "/${path}/", idType: SLUG) {
 				id
 				excerpt
 				title
