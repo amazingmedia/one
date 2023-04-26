@@ -24,13 +24,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		};
 	}
 	const query = gql`
-	
-	 
-	
-	
 		{
-		query PostBySlug($id: ID!) {
-			post(id: "/${path}/", idType: SLUG) {
+			post(id: "/${path}/", idType: URI) {
 				id
 				excerpt
 				title
@@ -38,11 +33,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 				dateGmt
 				modifiedGmt
 				content
-				 seo {
-          metaDesc
-          fullHead
-          title
-        }
 				author {
 					node {
 						name
@@ -56,7 +46,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 				}
 			}
 		}
-		 
 	`;
 
 	const data = await graphQLClient.request(query);
@@ -82,7 +71,6 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = (props) => {
 	const { post, host, path } = props;
-	const { seo } = props;
 
 	// to remove tags from excerpt
 	const removeTags = (str: string) => {
@@ -94,8 +82,7 @@ const Post: React.FC<PostProps> = (props) => {
 	return (
 		<>
 			<Head>
-				<title>{seo.title}</title>
-				<meta property="og:title" content={post.soe.title} />
+				<meta property="og:title" content={post.title} />
 				<link rel="canonical" href={`https://${host}/${path}`} />
 				<meta property="og:description" content={removeTags(post.excerpt)} />
 				<meta property="og:url" content={`https://${host}/${path}`} />
