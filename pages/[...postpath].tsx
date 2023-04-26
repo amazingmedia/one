@@ -24,7 +24,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		};
 	}
 	const query = gql`
+	
+	 
+	
+	
 		{
+		query PostBySlug($id: ID!) {
 			post(id: "/${path}/", idType: URI) {
 				id
 				excerpt
@@ -51,6 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 				}
 			}
 		}
+		 }
 	`;
 
 	const data = await graphQLClient.request(query);
