@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			post(id: "/${path}/", idType: URI) {
 				id
 				excerpt
-				 
+				title
 				link
 				dateGmt
 				modifiedGmt
@@ -75,7 +75,7 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = (props) => {
-	const { post, host, path } = seo;
+	const { post, host, path } = props;
 	const { seo } = props;
 
 	// to remove tags from excerpt
